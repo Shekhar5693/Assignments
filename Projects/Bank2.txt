@@ -1,8 +1,0 @@
-Welcome to NO Bank
-
-Please select: 
-1 for deposit. 
-2 for withdrawal 
-3 for creating CD account 
-4 for checking interest 
-5 for checking account details

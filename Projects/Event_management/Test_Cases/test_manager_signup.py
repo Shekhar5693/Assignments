@@ -21,9 +21,9 @@ class TestUserAccount:
         self.account = account
         return account
 
-    def test_create_client_account(self, account):
+    def test_create_manager_account(self, account):
         self.project_site()
-        self.client_signup_form()
+        self.manager_signup_form()
         self.enter_name(account.full_name)
         self.enter_username(account.first_name)
         self.enter_email(account.email)
@@ -34,22 +34,19 @@ class TestUserAccount:
         assert self.created() == "Login"
 
         self.log_in(account.first_name, account.password)
-        assert self.logged_in() == "Client Dashboard"
+        assert self.logged_in() == "managerdash"
 
 # Open the project website
     def project_site(self):
         self.driver.get("http://localhost/AD-event-management-main/HomePage/rishabh/")
 
-# Navigating to the client signup form
-    def client_signup_form(self):
+# Navigating to the manager signup form
+    def manager_signup_form(self):
         sign_up_locator = By.PARTIAL_LINK_TEXT, "SignUp"
         self.driver.find_element(*sign_up_locator).click()
 
-        client_locator = By.CSS_SELECTOR,".ghost[id='signUp']"
-        self.driver.find_element(*client_locator).click()
-
-        client_signup_button_locator = By.CSS_SELECTOR,"button[formaction='signup_client.php']"
-        self.wait.until(expected.element_to_be_clickable(client_signup_button_locator)).click()
+        manager_signup_button_locator = By.CSS_SELECTOR,"button[formaction='signup_event-manager.php']"
+        self.driver.find_element(*manager_signup_button_locator).click()
 
 # Filling the account form
     def enter_name(self,fullname):
@@ -94,7 +91,6 @@ class TestUserAccount:
         self.driver.find_element(*submit_locator).click()
 
     def logged_in(self):
-        check = By.PARTIAL_LINK_TEXT, "Client Dashboard"
-        return self.driver.find_element(*check).text
+        return self.driver.title
         
 

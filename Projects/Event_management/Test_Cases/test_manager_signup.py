@@ -15,7 +15,7 @@ class TestUserAccount:
         account.first_name = self.fake.first_name()
         account.last_name = self.fake.last_name()
         account.full_name = account.first_name + " " + account.last_name
-        account.email = self.fake.email() 
+        account.email = account.first_name + "." + account.last_name + "@example.com"
         account.password = "fakepassword1"
         account.number = "1234567890"
         self.account = account

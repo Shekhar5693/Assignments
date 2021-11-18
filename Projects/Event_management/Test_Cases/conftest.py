@@ -6,5 +6,5 @@ from selenium import webdriver
 def driver():
 	driver = webdriver.Chrome()
 	yield driver
-	sleep(4)
+	sleep(5)
 	driver.quit()

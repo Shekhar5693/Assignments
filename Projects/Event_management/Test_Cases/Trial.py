@@ -11,6 +11,7 @@ wait = WebDriverWait(driver, 10)
 url = "http://localhost/AD-event-management-main/HomePage/rishabh/"
 open = driver.get(url)
 
+
 # Navigating to the client signup form
 sign_up_locator = By.PARTIAL_LINK_TEXT, "SignUp"
 sign_up = driver.find_element(*sign_up_locator).click()
@@ -29,7 +30,7 @@ username_field_locator = By.CSS_SELECTOR, "input[name='username']"
 username = driver.find_element(*username_field_locator).send_keys("Selenium")
 
 email_field_locator = By.CSS_SELECTOR, "input[name='email']"
-email = driver.find_element(*email_field_locator).send_keys("Selenium")
+email = driver.find_element(*email_field_locator).send_keys("Selenium@a.com")
 
 password_field_locator = By.CSS_SELECTOR, "input[name='password']"
 password = driver.find_element(*password_field_locator).send_keys("Selenium")
@@ -38,12 +39,13 @@ conPwd_field_locator = By.CSS_SELECTOR, "input[name='confirm_password']"
 conpwd = driver.find_element(*conPwd_field_locator).send_keys("Selenium")
 
 number_field_locator = By.CSS_SELECTOR, "input[name='mobile_no']"
-number = driver.find_element(*number_field_locator).send_keys("Selenium")
-sleep(10)
+number = driver.find_element(*number_field_locator).send_keys("1234567890")
 
+driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+sleep(5)
 # Click submit button
-#submit_button_locator = By.CSS_SELECTOR, "button[value='Submit']"
-#submit = driver.find_element(*submit_button_locator).click()
+submit_button_locator = By.CSS_SELECTOR, "button[value='Submit']"
+submit = driver.find_element(*submit_button_locator).click()
 
 
 driver.quit()

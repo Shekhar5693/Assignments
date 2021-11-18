@@ -1,6 +1,9 @@
 import os
+import pytest
 from time import sleep
+from faker import Faker
 from selenium import webdriver
+from types import SimpleNamespace
 from selenium.webdriver import Chrome
 from selenium.webdriver import ChromeOptions
 from selenium.webdriver.common.by import By

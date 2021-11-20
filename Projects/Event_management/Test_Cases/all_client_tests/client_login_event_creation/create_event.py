@@ -1,14 +1,20 @@
 from selenium.webdriver.support import select
 from webdriver_helpers import *
 
-class Test_login_event_creation:
-	@pytest.fixture(autouse=True)
-	def setup(self,driver):
+class Setup:
+	def __init__(self, driver:WebDriver, url):
 		self.driver = driver
 		self.wait = WebDriverWait(driver, 10)
+		self.url = url
+
+class login_event_creation(Setup):
+	URL = "http://localhost/AD-event-management-main/HomePage/rishabh/"
+	
+	def __init__(self, driver:WebDriver):
+		super().__init__(driver, self.URL)
 
 	def project_site(self):
-		self.driver.get("http://localhost/AD-event-management-main/HomePage/rishabh/")
+		self.driver.get(login_event_creation.URL)
 	
 	def client_login(self):
 		login_locator = By.PARTIAL_LINK_TEXT, "Login"

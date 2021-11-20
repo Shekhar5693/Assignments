@@ -6,8 +6,9 @@ from faker import Faker
 from selenium import webdriver
 from types import SimpleNamespace
 from selenium.webdriver import Chrome
-from selenium.webdriver import ChromeOptions
 from selenium.webdriver.common.by import By
+from selenium.webdriver import ChromeOptions
+from selenium.webdriver.support import select
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.remote.webdriver import WebDriver
 from selenium.webdriver.remote.webelement import WebElement

@@ -2,7 +2,7 @@ import pytest
 import random
 from create_event import login_event_creation
 
-
+# Login information for the tests
 username = "Lakshay"
 password = "fakepassword1"
 manager_ = "Mamooty"

@@ -1,4 +1,3 @@
-from selenium.webdriver.support import select
 from webdriver_helpers import *
 
 class Setup:

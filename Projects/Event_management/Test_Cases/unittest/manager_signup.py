@@ -6,8 +6,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 
 # username, email and phone number 
-first_name = "manager"
-last_name = "1"
+first_name = "Narendra"
+last_name = "Modi"
 full_name = first_name + " " + last_name
 email = first_name + "." + last_name + "@example.com"
 password = "fakepassword1"

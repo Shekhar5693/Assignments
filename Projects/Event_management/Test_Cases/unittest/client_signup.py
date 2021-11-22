@@ -10,8 +10,8 @@ from selenium.webdriver.support import expected_conditions as expected
 
 
 # inputs
-first_name = "client1"
-last_name = "1"
+first_name = "Baburao"
+last_name = "Apte"
 full_name = first_name + " " + last_name
 email = first_name + "." + last_name + "@example.com"
 password = "fakepassword1"

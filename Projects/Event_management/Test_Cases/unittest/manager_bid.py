@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as expected
 
-username = "Mamooty"
+username = "Narendra"
 password = "fakepassword1"
 
 driver = webdriver.Chrome()
@@ -38,7 +38,7 @@ driver.find_element(*submit_locator).click()
 
 
 #-------------------------------------------Bidding-----------------------------------------------------#
-bid_button_locator = By.XPATH, "//tbody/tr[2]/td[10]/button[1]"
+bid_button_locator = By.XPATH, "//tbody/tr[1]/td[10]/button[1]"
 driver.find_element(*bid_button_locator).click()
 sleep(2)
  

@@ -9,8 +9,8 @@ from selenium.webdriver.support import expected_conditions as expected
 
 
 # inputs
-username = "client"
-password = "123456q"
+username = "Baburao"
+password = "fakepassword1"
 number = random.randint(0,10)
 budget = random.randint(5000,10000)
 

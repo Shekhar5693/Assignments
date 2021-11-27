@@ -131,3 +131,37 @@ class login_event_creation(Setup):
 		html = self.driver.find_element_by_tag_name('html').send_keys(Keys.PAGE_DOWN)
 		sleep(1)
 		return html
+
+	def rsvp(self):
+		rsvp_locator = By.PARTIAL_LINK_TEXT, "Send RSVP"
+		self.driver.find_element(*rsvp_locator).click()
+
+		sleep(3)
+
+		invite_locator = By.PARTIAL_LINK_TEXT, "Single Invite"
+		self.driver.find_element(*invite_locator).click()
+
+		self.driver.switch_to.window(self.driver.window_handles[1])
+
+		name_locator = By.CSS_SELECTOR, "input#name"
+		self.driver.find_element(*name_locator).send_keys("Raj")
+
+		yes_locator = By.CSS_SELECTOR, "label[for='Yes']"
+		self.driver.find_element(*yes_locator).click()
+
+		cuisine_locator = By.CSS_SELECTOR, "label[for='Italian']"
+		self.driver.find_element(*cuisine_locator).click()
+
+		otherCuisine_locator = By.CSS_SELECTOR, "#otherCuisine"
+		self.driver.find_element(*otherCuisine_locator).send_keys("N.A.")
+
+		self.driver.find_element_by_tag_name('html').send_keys(Keys.PAGE_DOWN)
+		sleep(2)
+
+		specialMessage_locator = By.CSS_SELECTOR, "#specialMsg"
+		self.driver.find_element(*specialMessage_locator).send_keys("Congratulations")
+
+		sleep(3)
+
+		submit_locator2 = By.XPATH, "//button[normalize-space()='Submit']"
+		self.driver.find_element(*submit_locator2).click()

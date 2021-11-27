@@ -41,3 +41,10 @@ def test_client_login_event_creation(create_event:login_event_creation):
 	assert create_event.logged_in() == "Client Dashboard"
 	create_event.fill_event_form(username, number, budget)
 	assert create_event.event_created() == "Event created successfully!"
+
+# Test for creating rsvp
+def test_rsvp(create_event:login_event_creation):
+	create_event.project_site()
+	create_event.client_login()
+	create_event.log_in(username, password)
+	create_event.rsvp()

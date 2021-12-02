@@ -36,9 +36,10 @@ class Test_login_event_creation:
 	def test_login_using_manager(self,account):
 		self.project_site()
 		self.client_login()
-		assert self.login_manager_account(self,account.manager_account,account.password) == "Invalid username."
+		assert self.login_manager_account(account.manager_account,account.password) == "Invalid username."
 
 # test for successful logging in and event creation
+	@pytest.mark.int
 	def test_client_login_event_creation(self, account):
 		self.project_site()
 		self.client_login()
@@ -46,6 +47,16 @@ class Test_login_event_creation:
 		assert self.logged_in() == "Client Dashboard"
 		self.fill_event_form(account.username, account.number, account.budget)
 		assert self.event_created() == "Event created successfully!"
+		self.create_rsvp()
+		assert self.rsvp_success() ==  "Thank you!"
+
+# test for creating rsvp
+	# def test_rsvp(self, account):
+	# 	self.project_site()
+	# 	self.client_login()
+	# 	self.log_in(account.username, account.password)
+	# 	self.create_rsvp()
+	# 	assert self.rsvp_success() == "Thank you!"
 
 #-------------------------------------------NAVIGATING TO SITE AND LOGIN PAGE--------------------------------------------#	
 	def project_site(self):
@@ -166,6 +177,44 @@ class Test_login_event_creation:
 		self.driver.find_element(*password_locator).send_keys(pwd)
 		self.driver.find_element(*submit_locator).click()		
 		return self.driver.find_element(*alert).text
+
+#--------------------------------------------rsvp invite-------------------------------------------------------------#
+	def create_rsvp(self):
+		rsvp_locator = By.CSS_SELECTOR, "a[href='../RSVP/rsvpHome.html']"
+		self.driver.find_element(*rsvp_locator).click()
+
+		sleep(3)
+
+		invite_locator = By.PARTIAL_LINK_TEXT, "Single Invite"
+		self.driver.find_element(*invite_locator).click()
+
+		self.driver.switch_to.window(self.driver.window_handles[1])
+
+		name_locator = By.CSS_SELECTOR, "input#name"
+		self.driver.find_element(*name_locator).send_keys("Raj")
+
+		yes_locator = By.CSS_SELECTOR, "label[for='Yes']"
+		self.driver.find_element(*yes_locator).click()
+
+		cuisine_locator = By.CSS_SELECTOR, "label[for='Italian']"
+		self.driver.find_element(*cuisine_locator).click()
+
+		otherCuisine_locator = By.CSS_SELECTOR, "#otherCuisine"
+		self.driver.find_element(*otherCuisine_locator).send_keys("N.A.")
+
+		self.driver.find_element_by_tag_name('html').send_keys(Keys.PAGE_DOWN)
+		sleep(2)
+
+		specialMessage_locator = By.CSS_SELECTOR, "#specialMsg"
+		self.driver.find_element(*specialMessage_locator).send_keys("Congratulations")
+
+		sleep(3)
+
+		submit_locator2 = By.XPATH, "//button[normalize-space()='Submit']"
+		self.driver.find_element(*submit_locator2).click()
+	
+	def rsvp_success(self):
+		return self.driver.find_element(By.CSS_SELECTOR, ".alert-heading").text
 
 #-----------------------------------------------------------------------------------------------------------------------#
 	def page_down(self):

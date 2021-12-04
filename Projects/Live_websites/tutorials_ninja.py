@@ -46,8 +46,8 @@ laptop_locator = By.CSS_SELECTOR, "img[title='HP LP3065']"
 driver.find_element(*laptop_locator).click()
 sleep(3)
 
-date_loator = By.CSS_SELECTOR, "#input-option225"
-date = driver.find_element(*date_loator)
+date_locator = By.CSS_SELECTOR, "#input-option225"
+date = driver.find_element(*date_locator)
 date.clear()
 date.send_keys("2022-12-31")
 sleep(3)
@@ -69,6 +69,7 @@ driver.find_element(*guest_locator).click()
 
 continue_locator = By.CSS_SELECTOR, "#button-account"
 driver.find_element(*continue_locator).click()
+sleep(2)
 
 #Initializing variables for guest account
 firstname = fake.first_name()
@@ -81,6 +82,52 @@ postcode = fake.postcode()
 country = By.CSS_SELECTOR, "#input-payment-country [value='99']"
 state = By.CSS_SELECTOR, "#input-payment-zone [value='1475']"
 
+#filling guest account form
+firstname_locator = By.CSS_SELECTOR, "#input-payment-firstname"
+driver.find_element(*firstname_locator).send_keys(firstname)
+
+lastname_locator = By.CSS_SELECTOR, "#input-payment-lastname"
+driver.find_element(*lastname_locator).send_keys(lastname)
+
+email_locator = By.CSS_SELECTOR, "#input-payment-email"
+driver.find_element(*email_locator).send_keys(email)
+
+phone_locator = By.CSS_SELECTOR, "#input-payment-telephone"
+driver.find_element(*phone_locator).send_keys(phone)
+
+address_locator = By.CSS_SELECTOR, "#input-payment-address-1"
+driver.find_element(*address_locator).send_keys(address)
+
+city_locator = By.CSS_SELECTOR, "#input-payment-city"
+driver.find_element(*city_locator).send_keys(city)
+
+postcode_locator = By.CSS_SELECTOR, "#input-payment-postcode"
+driver.find_element(*postcode_locator).send_keys(postcode)
+
+driver.find_element(*country).click()
+wait.until(expected.visibility_of_element_located(state)).click()
+sleep(3)
+continue_locator2 = By.CSS_SELECTOR, "input#button-guest"
+driver.find_element(*continue_locator2).click()
+
+continue_locator3 = By.CSS_SELECTOR, "input#button-shipping-method"
+wait.until(expected.element_to_be_clickable(continue_locator3)).click()
+
+terms_conditions = By.CSS_SELECTOR, "input[value='1'][name='agree']"
+wait.until(expected.element_to_be_clickable(terms_conditions)).click()
+
+continue_locator4 = By.CSS_SELECTOR, "input#button-payment-method"
+wait.until(expected.element_to_be_clickable(continue_locator4)).click()
+
+price_locator = By.XPATH, "//*[@id='collapse-checkout-confirm']/div/div[1]/table/tfoot/tr[3]/td[2]"
+price = wait.until(expected.visibility_of_all_elements_located(price_locator)).text
+print(price)
+
+confirm_locator = By.CSS_SELECTOR, "input#button-confirm"
+driver.find_element(*confirm_locator).click()
+
+confirmation_locator = By.CSS_SELECTOR, "div[id='content'] h1"
+confirmation = driver.find_element(*confirmation_locator).text
 
 driver.quit()
 #screenshot = Image.open("ss.png")
